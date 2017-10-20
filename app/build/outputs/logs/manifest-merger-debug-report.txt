@@ -1,0 +1,71 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml:1:1-15:12
+	package
+		ADDED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml:3:5-33
+		INJECTED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml:1:11-69
+	android:versionCode
+		INJECTED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml
+application
+ADDED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml:6:5-13:19
+MERGED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/03f537963e65b19923ef2154e80fe08d106bcf0a/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-v4:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/e1dff2bf52d17381ec5b46613f6027d0a0ac425c/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/8aff62672b2a31e7a5ffabab5e85901c15b577af/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/5d295b534a562c3dbfa31bd37192dc8037150679/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/6504a2596ef7fe4583aa958995a9db15977128fa/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/1cd139bd4f5fd43b24f0989e78c12de962369687/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/c0f250fbdd1caf559caf773efded007266a6a95b/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/602595e085fd89e709e1619f1cedc0eafacb51a0/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-compat:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/40bbeb06495ff2dfa8af3058275ff0d92be572f3/output/AndroidManifest.xml:29:5-20
+	android:label
+		ADDED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml:7:9-41
+	android:supportsRtl
+		ADDED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml:10:9-35
+	android:roundIcon
+		ADDED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml:9:9-54
+	android:allowBackup
+		ADDED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml:6:18-44
+	android:icon
+		ADDED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml:8:9-43
+	android:theme
+		ADDED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml:11:9-40
+uses-sdk
+INJECTED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/03f537963e65b19923ef2154e80fe08d106bcf0a/output/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:support-v4:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/e1dff2bf52d17381ec5b46613f6027d0a0ac425c/output/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/8aff62672b2a31e7a5ffabab5e85901c15b577af/output/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/5d295b534a562c3dbfa31bd37192dc8037150679/output/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/6504a2596ef7fe4583aa958995a9db15977128fa/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/1cd139bd4f5fd43b24f0989e78c12de962369687/output/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/c0f250fbdd1caf559caf773efded007266a6a95b/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/602595e085fd89e709e1619f1cedc0eafacb51a0/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/40bbeb06495ff2dfa8af3058275ff0d92be572f3/output/AndroidManifest.xml:21:5-23:58
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/03f537963e65b19923ef2154e80fe08d106bcf0a/output/AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		INJECTED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/rahulkant/Desktop/Code4Good/team-8/app/src/main/AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/03f537963e65b19923ef2154e80fe08d106bcf0a/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-v4:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/e1dff2bf52d17381ec5b46613f6027d0a0ac425c/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/8aff62672b2a31e7a5ffabab5e85901c15b577af/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/5d295b534a562c3dbfa31bd37192dc8037150679/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/6504a2596ef7fe4583aa958995a9db15977128fa/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/1cd139bd4f5fd43b24f0989e78c12de962369687/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/c0f250fbdd1caf559caf773efded007266a6a95b/output/AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.support:support-vector-drawable:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/602595e085fd89e709e1619f1cedc0eafacb51a0/output/AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.support:support-compat:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/40bbeb06495ff2dfa8af3058275ff0d92be572f3/output/AndroidManifest.xml:25:5-27:41
+	android:value
+		ADDED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/03f537963e65b19923ef2154e80fe08d106bcf0a/output/AndroidManifest.xml:27:9-38
+	android:name
+		ADDED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/rahulkant/.android/build-cache/03f537963e65b19923ef2154e80fe08d106bcf0a/output/AndroidManifest.xml:26:9-47
