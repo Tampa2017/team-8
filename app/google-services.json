@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "918784496649",
+    "firebase_url": "https://team-8-91cf8.firebaseio.com",
+    "project_id": "team-8-91cf8",
+    "storage_bucket": "team-8-91cf8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918784496649:android:af999db0916e9263",
+        "android_client_info": {
+          "package_name": "com.example.junior.finfun"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "918784496649-csteaoh1uli9bntr4639el76su80egpb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.junior.finfun",
+            "certificate_hash": "87c285b769896655cf9819ba6a9430666edf9dfc"
+          }
+        },
+        {
+          "client_id": "918784496649-u3d4v1d04smdrnhbf8dvnshuj37lrpfe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPCkahJR1nVtf38ve46oxq0J3GskrsB-A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "918784496649-u3d4v1d04smdrnhbf8dvnshuj37lrpfe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
