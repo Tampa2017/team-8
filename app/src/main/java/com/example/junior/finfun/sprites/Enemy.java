@@ -1,6 +1,13 @@
 package com.example.junior.finfun.sprites;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.RectF;
+
+import com.example.junior.finfun.R;
+
+import java.util.Random;
 
 public class Enemy {
 
@@ -8,37 +15,62 @@ public class Enemy {
     private float y;
 
     private RectF rect;
+    private Bitmap bitmap;
 
     //Which way is trash flowing
     public final int LEFT = 0;
 
     //going nowhere
     int heading = -1;
-    float speed = 350;
+    float speed = 200;
 
     private int width;
     private int height;
+    private int startX;
+    private int startY;
+    public Enemy(Context context, int screenX, int screenY) {
 
-    private boolean isActive;
-
-    public Enemy(int screenX, int screenY) {
+        Random rand = new Random();
         width = screenX / 20;
-        height = screenX / 20;
-        isActive = false;
+        height = screenY / 20;
 
         rect = new RectF();
+
+        startX = screenX;
+        startY = screenY;
+        int xShift = rand.nextInt(1000);
+        x = startX + xShift;
+        int yShift = rand.nextInt(3000) - 100;
+        y = startY - yShift;
+        heading = LEFT;
+
+        int bitmapSelector = rand.nextInt(1);
+
+        if(bitmapSelector == 0)
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.trash_sprite1);
+        else
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.trash_sprite2);
+
+        bitmap = Bitmap.createScaledBitmap(bitmap,
+                width, height, false);
+
+
     }
 
     public RectF getRect() {
         return rect;
     }
 
-    public boolean getStatus() {
-        return isActive;
+    public Bitmap getBitmap() {
+        return bitmap;
     }
 
-    public void setInactive() {
-        isActive = false;
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
     }
 
     public float getImpactPointX() {
@@ -48,24 +80,20 @@ public class Enemy {
         else return x;
     }
 
-    public boolean attack(float startX, float startY, int direction) {
-        if(!isActive) {
-            x = startX;
-            y = startY;
-            heading = direction;
-            isActive = true;
-            return true;
-        }
-
-        //bullet already active
-        return false;
-    }
 
     public void update(long fps) {
         //Just move from right to left
+        Random rand = new Random();
 
         if(heading == LEFT) {
-            x = x - speed / fps;
+            x -= speed/fps;
+        }
+        if(x <= 0) {
+
+            int xShift = rand.nextInt(1000);
+            x = startX + xShift;
+            int yShift = rand.nextInt(3000) - 100;
+            y = startY - yShift;
         }
 
         rect.left = x;

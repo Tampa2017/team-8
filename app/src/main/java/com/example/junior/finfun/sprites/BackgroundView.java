@@ -77,6 +77,11 @@ public class BackgroundView extends SurfaceView implements Runnable {
 
         playerShark = new PlayerShark(context, screenHeight, screenWidth);
 
+
+        for(int i = 0; i < enemies.length; i++) {
+            enemies[i] = new Enemy(context, screenWidth, screenHeight);
+        }
+
     }
 
     private void drawBackground(int position) {
@@ -132,6 +137,9 @@ public class BackgroundView extends SurfaceView implements Runnable {
 
             canvas.drawBitmap(playerShark.getBitmap(), playerShark.getX() - 700, playerShark.getY(), paint);
 
+            for(int i =0; i < enemies.length; i++) {
+                    canvas.drawBitmap(enemies[i].getBitmap(), enemies[i].getX(), enemies[i].getY(), paint);
+            }
 
             ourHolder.unlockCanvasAndPost(canvas);
         }
@@ -150,6 +158,24 @@ public class BackgroundView extends SurfaceView implements Runnable {
         }
 
         playerShark.update(fps);
+
+
+        // Update the players bullet
+        for(int i = 0; i < enemies.length; i++) {
+                enemies[i].update(fps);
+        }
+
+        // Has the player's bullet hit the top of the screen
+
+        // Has an invaders bullet hit the bottom of the screen
+
+        // Has the player's bullet hit an invader
+
+        // Has an alien bullet hit a shelter brick
+
+        // Has a player bullet hit a shelter brick
+
+        // Has an invader bullet hit the player ship
 
 
     }
@@ -179,8 +205,12 @@ public class BackgroundView extends SurfaceView implements Runnable {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         switch(motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+            //Player has touched the screen
             case MotionEvent.ACTION_DOWN:
+                
                 break;
+
+            //Player has removed from screen
             case MotionEvent.ACTION_UP:
                 break;
         }
