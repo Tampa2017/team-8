@@ -33,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
         b_launch = (ImageButton) findViewById(R.id.start_btn);
         main_screen = (ConstraintLayout) findViewById(R.id.main_screen);
 
+        b_launch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         Random rand = new Random();
         for(int i = 0; i < rand.nextInt(10)+1; ++i)
         {
