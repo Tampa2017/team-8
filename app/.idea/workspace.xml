@@ -33,10 +33,11 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/junior/finfun/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="53" column="1" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="1" />
+            <state relative-caret-position="90">
+              <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
               <folding>
-                <element signature="e#978#984#0" expanded="true" />
+                <element signature="e#1189#1385#0" expanded="true" />
+                <element signature="e#1384#1385#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2289,12 +2290,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-25/android/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="11789" column="21" selection-start-line="11789" selection-start-column="21" selection-end-line="11789" selection-end-column="21" />
+          <folding>
+            <element signature="e#469184#469185#0" expanded="true" />
+            <element signature="e#469221#469222#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/junior/finfun/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="53" column="1" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="1" />
+        <state relative-caret-position="90">
+          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
           <folding>
-            <element signature="e#978#984#0" expanded="true" />
+            <element signature="e#1189#1385#0" expanded="true" />
+            <element signature="e#1384#1385#0" expanded="true" />
           </folding>
         </state>
       </provider>
