@@ -11,7 +11,7 @@ import android.view.SurfaceView;
  * Created by Junior on 10/20/2017.
  */
 
-public class BackGround extends SurfaceView implements Runnable {
+public class BackgroundView extends SurfaceView implements Runnable {
     private volatile boolean running;
     private Thread gameThread = null;
 
@@ -29,7 +29,7 @@ public class BackGround extends SurfaceView implements Runnable {
     int screenWidth;
     int screenHeight;
 
-    BackGround(Context context, int screenWidth, int screenHeight) {
+    BackgroundView(Context context, int screenWidth, int screenHeight) {
         super(context);
 
         this.context = context;
