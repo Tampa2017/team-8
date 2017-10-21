@@ -22,6 +22,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    //offset so that items dont go off screen
     private final int OFFSET = 50;
     private ImageButton b_launch;
     private ConstraintLayout main_screen;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        b_launch = (ImageButton) findViewById(R.id.start_btn);
+        b_launch = (ImageButton) findViewById(R.id.start_btn); //button starts game
         main_screen = (ConstraintLayout) findViewById(R.id.main_screen);
 
         b_launch.setOnClickListener(new View.OnClickListener() {
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Random rand = new Random();
+        Random rand = new Random(); //generates trash randomly on screen
         for(int i = 0; i < rand.nextInt(10)+1; ++i)
         {
             ImageView trash_img = new ImageView(MainActivity.this);
