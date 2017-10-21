@@ -1,5 +1,6 @@
 package com.example.junior.finfun;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -36,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
         b_launch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(MainActivity.this, PlayGameActivity.class);
+                startActivity(intent);
             }
         });
 
