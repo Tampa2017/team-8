@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
                     ((ViewManager)v.getParent()).removeView(v);
                 }
             });
-            trash_img.setBackgroundResource(R.mipmap.ic_launcher_round);
-            trash_img.setX(rand.nextInt(Resources.getSystem().getDisplayMetrics().widthPixels)-trash_img.getWidth());
+            trash_img.setBackgroundResource(R.drawable.trash_sprite);
+            trash_img.setX(rand.nextInt(Resources.getSystem().getDisplayMetrics().widthPixels)-(trash_img.getWidth()+OFFSET));
             trash_img.setY(rand.nextInt(Resources.getSystem().getDisplayMetrics().heightPixels)-(trash_img.getHeight()+OFFSET));
             main_screen.addView(trash_img);
         }
