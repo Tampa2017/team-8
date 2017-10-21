@@ -4,14 +4,19 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import java.util.ArrayList;
 
 /**
  * Created by Junior on 10/20/2017.
  */
 
 public class BackgroundView extends SurfaceView implements Runnable {
+
+    ArrayList<Background> backgrounds;
     private volatile boolean running;
     private Thread gameThread = null;
 
@@ -29,7 +34,7 @@ public class BackgroundView extends SurfaceView implements Runnable {
     int screenWidth;
     int screenHeight;
 
-    BackgroundView(Context context, int screenWidth, int screenHeight) {
+    public BackgroundView(Context context, int screenWidth, int screenHeight) {
         super(context);
 
         this.context = context;
@@ -39,6 +44,43 @@ public class BackgroundView extends SurfaceView implements Runnable {
         //initialize drawing objects
         ourHolder = getHolder();
         paint = new Paint();
+
+        backgrounds = new ArrayList<>();
+
+        backgrounds.add(new Background(
+                this.context,
+                screenWidth,
+                screenHeight,
+                "grass", 70, 110, 200
+        ));
+
+
+    }
+
+    private void drawBackground(int position) {
+
+        // Make a copy of the relevant background
+        Background bg = backgrounds.get(position);
+
+        // define what portion of images to capture and
+        // what coordinates of screen to draw them at
+
+        // For the regular bitmap
+        Rect fromRect1 = new Rect(0, 0, bg.width - bg.xClip, bg.height);
+        Rect toRect1 = new Rect(bg.xClip, bg.startY, bg.width, bg.endY);
+
+        // For the reversed background
+        Rect fromRect2 = new Rect(bg.width - bg.xClip, 0, bg.width, bg.height);
+        Rect toRect2 = new Rect(0, bg.startY, bg.xClip, bg.endY);
+
+        //draw the two background bitmaps
+        if (!bg.reversedFirst) {
+            canvas.drawBitmap(bg.bitmap, fromRect1, toRect1, paint);
+            canvas.drawBitmap(bg.bitmapReversed, fromRect2, toRect2, paint);
+        } else {
+            canvas.drawBitmap(bg.bitmap, fromRect2, toRect2, paint);
+            canvas.drawBitmap(bg.bitmapReversed, fromRect1, toRect1, paint);
+        }
 
     }
 
@@ -58,15 +100,25 @@ public class BackgroundView extends SurfaceView implements Runnable {
 
             canvas.drawColor(Color.argb(255, 0, 3, 70));
 
+            drawBackground(0);
+
             paint.setTextSize(60);
             paint.setColor(Color.argb(255, 255, 255, 255));
             canvas.drawText("I am a plane", 350, screenHeight / 100 * 5, paint);
             paint.setTextSize(220);
             canvas.drawText("I'm a train", 50, screenHeight / 100*80, paint);
+
+            drawBackground(1);
+
+            ourHolder.unlockCanvasAndPost(canvas);
         }
     }
 
     private void update() {
+
+        for(Background bg: backgrounds) {
+            bg.update(fps);
+        }
 
     }
 
