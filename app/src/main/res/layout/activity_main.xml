@@ -20,5 +20,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="Launch Button"
-        android:src="@mipmap/ic_launcher_round" />
+        android:src="@drawable/shark_sprite"
+        android:background="@android:color/transparent"/>
 </android.support.constraint.ConstraintLayout>
