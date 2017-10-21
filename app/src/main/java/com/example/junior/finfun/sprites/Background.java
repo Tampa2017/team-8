@@ -41,8 +41,8 @@ public class Background {
 
         xClip = 0;
 
-        startY = sY * (screenHeight /100);
-        endY = eY * (screenHeight / 100);
+        startY = sY * (screenHeight/ 100);
+        endY = eY * (screenHeight/ 100);
         speed = s;
 
         bitmap = Bitmap.createScaledBitmap(bitmap, screenWidth,
