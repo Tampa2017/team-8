@@ -12,7 +12,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@mipmap/bg_day"
+            android:src="@drawable/day_ocean"
             android:scaleType = "centerCrop"/>
     </FrameLayout>
     <ImageButton
