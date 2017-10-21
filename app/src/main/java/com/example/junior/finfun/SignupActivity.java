@@ -133,6 +133,5 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        auth.signOut();
     }
 }

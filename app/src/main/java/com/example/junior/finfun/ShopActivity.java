@@ -29,6 +29,7 @@ public class ShopActivity extends AppCompatActivity
     private DatabaseReference ref;
     private int current_points;
     private int current_lives;
+    private boolean shark_hat_unlocked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +51,14 @@ public class ShopActivity extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 UserData data = dataSnapshot.getValue(UserData.class);
-                current_points = data.getPoints();
-                current_lives = data.getLives();
+                if(data != null) {
+                    current_points = data.getPoints();
+                    current_lives = data.getLives();
+                    shark_hat_unlocked = data.isSharkHat();
+                }
+                else {
+                    ref.setValue(new UserData());
+                }
             }
 
             @Override
@@ -128,7 +135,7 @@ public class ShopActivity extends AppCompatActivity
                                                  text = "So sorry! You don't have enough points. Please try again later.";
                                              else {
                                                  text = "Great job! Here is your top hat!";
-                                                 ref.setValue(new UserData(current_points-50, current_lives));
+                                                 ref.setValue(new UserData(current_points-50, current_lives, true));
                                              }
                                              Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
                                              toast.show();
@@ -144,7 +151,10 @@ public class ShopActivity extends AppCompatActivity
                                                     text = "So sorry! You don't have enough points. Please try again later.";
                                                 else {
                                                     text = "Great job! Here is your extra life!";
-                                                    ref.setValue(new UserData(current_points-100, current_lives+1));
+                                                    if(shark_hat_unlocked)
+                                                        ref.setValue(new UserData(current_points-100, current_lives+1, true));
+                                                    else
+                                                        ref.setValue(new UserData(current_points-100, current_lives+1, false));
                                                 }
                                                 Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
                                                 toast.show();
