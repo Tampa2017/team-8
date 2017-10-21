@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     //offset so that items dont go off screen
     private final int OFFSET = 50;
     private ImageButton b_launch;
+    private ImageButton shop_launch;
     private ConstraintLayout main_screen;
 
     @Override
@@ -33,9 +34,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         b_launch = (ImageButton) findViewById(R.id.start_btn); //button starts game
+        shop_launch = (ImageButton) findViewById(R.id.shop_btn);
         main_screen = (ConstraintLayout) findViewById(R.id.main_screen);
 
         b_launch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PlayGameActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        shop_launch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, PlayGameActivity.class);
@@ -56,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             trash_img.setBackgroundResource(R.drawable.trash_sprite);
             trash_img.setX(rand.nextInt(Resources.getSystem().getDisplayMetrics().widthPixels)-(trash_img.getWidth()+OFFSET));
             trash_img.setY((rand.nextInt(Resources.getSystem().getDisplayMetrics().heightPixels/2) +
-                    Resources.getSystem().getDisplayMetrics().heightPixels/2) - trash_img.getHeight()); //makes trash appear only on bottom half of screen
+                    Resources.getSystem().getDisplayMetrics().heightPixels/2) - (trash_img.getHeight()+OFFSET)); //makes trash appear only on bottom half of screen
             main_screen.addView(trash_img);
         }
     }
