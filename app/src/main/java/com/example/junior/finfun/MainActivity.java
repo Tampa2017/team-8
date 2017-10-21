@@ -10,8 +10,10 @@ import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
 import android.view.ViewManager;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final int OFFSET = 50;
     private ImageButton b_launch;
-    private ConstraintLayout bg;
+    private ConstraintLayout main_screen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         b_launch = (ImageButton) findViewById(R.id.start_btn);
-        bg = (ConstraintLayout) findViewById(R.id.background);
+        main_screen = (ConstraintLayout) findViewById(R.id.main_screen);
 
         Random rand = new Random();
         for(int i = 0; i < rand.nextInt(10)+1; ++i)
@@ -41,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
                     ((ViewManager)v.getParent()).removeView(v);
                 }
             });
-            trash_img.setBackgroundResource(R.mipmap.ic_launcher_round);
-            trash_img.setX(rand.nextInt(Resources.getSystem().getDisplayMetrics().widthPixels)-trash_img.getWidth());
+            trash_img.setBackgroundResource(R.drawable.trash_sprite);
+            trash_img.setX(rand.nextInt(Resources.getSystem().getDisplayMetrics().widthPixels)-(trash_img.getWidth()+OFFSET));
             trash_img.setY(rand.nextInt(Resources.getSystem().getDisplayMetrics().heightPixels)-(trash_img.getHeight()+OFFSET));
-            bg.addView(trash_img);
+            main_screen.addView(trash_img);
         }
     }
 }
