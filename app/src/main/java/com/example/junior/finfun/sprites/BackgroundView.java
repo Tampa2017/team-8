@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -170,6 +171,22 @@ public class BackgroundView extends SurfaceView implements Runnable {
         // Has an invaders bullet hit the bottom of the screen
 
         // Has the player's bullet hit an invader
+        for(int i = 0; i < enemies.length; i++) {
+            int enemyxCenter = (int) enemies[i].getX() + (enemies[i].getBitmap().getWidth() / 2);
+            int enemyyCenter = (int) enemies[i].getY() + (enemies[i].getBitmap().getHeight() / 2);
+            int sharkX = (int)playerShark.getX();
+            int sharkY = (int)playerShark.getY();
+
+            int sharkWidth = playerShark.getBitmap().getWidth();
+            int sharkHeight = playerShark.getBitmap().getHeight();
+
+
+            if(enemyxCenter < sharkX + sharkWidth && enemyxCenter > sharkX)
+                    if(enemyyCenter < sharkY + sharkHeight  && enemyyCenter > sharkY)
+                    {
+                        Log.d("collision", "yes!");
+                    }
+        }
 
         // Has an alien bullet hit a shelter brick
 
@@ -207,11 +224,12 @@ public class BackgroundView extends SurfaceView implements Runnable {
         switch(motionEvent.getAction() & MotionEvent.ACTION_MASK) {
             //Player has touched the screen
             case MotionEvent.ACTION_DOWN:
-                
+                playerShark.setMovementState(PlayerShark.TOP);
                 break;
 
             //Player has removed from screen
             case MotionEvent.ACTION_UP:
+                playerShark.setMovementState(PlayerShark.DOWN);
                 break;
         }
         return true;

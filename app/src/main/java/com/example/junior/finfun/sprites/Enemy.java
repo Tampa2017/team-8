@@ -22,7 +22,7 @@ public class Enemy {
 
     //going nowhere
     int heading = -1;
-    float speed = 200;
+    float speed = 500;
 
     private int width;
     private int height;
@@ -44,7 +44,7 @@ public class Enemy {
         y = startY - yShift;
         heading = LEFT;
 
-        int bitmapSelector = rand.nextInt(1);
+        int bitmapSelector = rand.nextInt(2);
 
         if(bitmapSelector == 0)
             bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.trash_sprite1);
@@ -53,6 +53,9 @@ public class Enemy {
 
         bitmap = Bitmap.createScaledBitmap(bitmap,
                 width, height, false);
+
+        width = bitmap.getWidth();
+        height = bitmap.getHeight();
 
 
     }
@@ -89,7 +92,6 @@ public class Enemy {
             x -= speed/fps;
         }
         if(x <= 0) {
-
             int xShift = rand.nextInt(1000);
             x = startX + xShift;
             int yShift = rand.nextInt(3000) - 100;

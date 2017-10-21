@@ -11,7 +11,7 @@ import com.example.junior.finfun.R;
  * Created by Junior on 10/21/2017.
  */
 
-class PlayerShark {
+public class PlayerShark {
 
     RectF rect;
 
@@ -35,8 +35,8 @@ class PlayerShark {
     private int sharkDirection;
 
     //which ways can the shark move
-    public final int TOP = 1;
-    public final int DOWN = 2;
+    public static final int TOP = 1;
+    public static final int DOWN = 2;
 
     public PlayerShark(Context context, int screenX, int screenY) {
 
@@ -55,8 +55,11 @@ class PlayerShark {
 
         bitmap = Bitmap.createScaledBitmap(bitmap, (int)length, (int) height, false);
 
+        length = bitmap.getWidth();
+        height = bitmap.getHeight();
+
         //how fast the shark is in pixels per second
-        sharkSpeed = 200;
+        sharkSpeed = 500;
     }
 
     //This update method will be called from update in MainPlayView
