@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,14 +37,24 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton b_launch;
     private ImageButton shop_launch;
     private ConstraintLayout main_screen;
+    private TextView quote;
     private FirebaseUser user;
     private DatabaseReference ref;
     private int current_points;
     private int current_lives;
     private boolean shark_hat_unlocked;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String [] facts = {"Sharks have adapted to living in a wide raanfe of aquatic habitats at various temperatures. \n",
+                "Most sharks are especially active in the evening and night when they hunt. \n",
+                "The jaws of sharks are not attatched to their skull, there are two upper an lower jaws that move seperatley. \n",
+                "Sharks have up to 3,000 teeth. \n",
+                "The majority of sharks had 8 ridgid fins. \n",
+                "Plastic is the most common element that is found in the ocean, and it is harmful for the environment. \n",
+                "Over one million seabirds are killed by ocean pollution each year."};
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -51,8 +62,13 @@ public class MainActivity extends AppCompatActivity {
         ref = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
 
         b_launch = (ImageButton) findViewById(R.id.start_btn); //button starts game
-        shop_launch = (ImageButton) findViewById(R.id.shop_btn);
         main_screen = (ConstraintLayout) findViewById(R.id.main_screen);
+        quote = (TextView) findViewById(R.id.textView3);
+
+        Random rand1 = new Random();
+        int index = rand1.nextInt(20) % facts.length;
+        quote.setText(facts[index]);
+
 
         ValueEventListener userListener = new ValueEventListener() {
             @Override
@@ -88,13 +104,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        shop_launch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ShopActivity.class);
-                startActivity(intent);
-            }
-        });
 
         Random rand = new Random(); //generates trash randomly on screen
         for(int i = 0; i < rand.nextInt(10)+1; ++i)

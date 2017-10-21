@@ -63,7 +63,7 @@ public class PlayerShark {
         Log.d("shark", Integer.toString((int)height));
 
         //how fast the shark is in pixels per second
-        sharkSpeed = 600;
+        sharkSpeed = 750;
     }
 
     //This update method will be called from update in MainPlayView

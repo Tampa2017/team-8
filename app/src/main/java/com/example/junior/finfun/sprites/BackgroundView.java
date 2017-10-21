@@ -13,6 +13,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.example.junior.finfun.EndGameActivity;
+import com.example.junior.finfun.MainActivity;
 
 import java.util.ArrayList;
 
@@ -248,8 +249,7 @@ public class BackgroundView extends SurfaceView implements Runnable {
 
     private void stop() {
         Log.d("end of game", "game ended");
-        Intent intent = new Intent(getContext(), EndGameActivity.class);
+        Intent intent = new Intent(getContext(), MainActivity.class);
         getContext().startActivity(intent);
-
     }
 }
