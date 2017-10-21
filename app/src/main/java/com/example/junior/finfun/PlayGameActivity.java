@@ -1,21 +1,20 @@
 package com.example.junior.finfun;
 
 
+import android.app.Activity;
 import android.graphics.Point;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
 
 import com.example.junior.finfun.sprites.BackgroundView;
 
-public class PlayGameActivity extends AppCompatActivity {
+public class PlayGameActivity extends Activity {
 
     private BackgroundView backgroundView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_play_game);
 
         Display display = getWindowManager().getDefaultDisplay();
         Point resolution = new Point();
@@ -25,5 +24,17 @@ public class PlayGameActivity extends AppCompatActivity {
 
         setContentView(backgroundView);
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        backgroundView.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        backgroundView.resume();
     }
 }

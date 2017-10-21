@@ -51,7 +51,7 @@ public class BackgroundView extends SurfaceView implements Runnable {
                 this.context,
                 screenWidth,
                 screenHeight,
-                "grass", 70, 110, 200
+                "day_ocean", 0, 110, 200
         ));
 
 
@@ -102,13 +102,12 @@ public class BackgroundView extends SurfaceView implements Runnable {
 
             drawBackground(0);
 
-            paint.setTextSize(60);
-            paint.setColor(Color.argb(255, 255, 255, 255));
-            canvas.drawText("I am a plane", 350, screenHeight / 100 * 5, paint);
-            paint.setTextSize(220);
-            canvas.drawText("I'm a train", 50, screenHeight / 100*80, paint);
+//            paint.setTextSize(60);
+//            paint.setColor(Color.argb(255, 255, 255, 255));
+//            canvas.drawText("I am a plane", 350, screenHeight / 100 * 5, paint);
+//            paint.setTextSize(220);
+//            canvas.drawText("I'm a train", 50, screenHeight / 100*80, paint);
 
-            drawBackground(1);
 
             ourHolder.unlockCanvasAndPost(canvas);
         }
