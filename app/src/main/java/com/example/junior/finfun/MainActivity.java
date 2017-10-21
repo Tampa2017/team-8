@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference ref;
     private int current_points;
     private int current_lives;
+    private boolean shark_hat_unlocked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 if(data != null) {
                     current_points = data.getPoints();
                     current_lives = data.getLives();
+                    shark_hat_unlocked = data.isSharkHat();
                 }
                 else {
                     ref.setValue(new UserData());
@@ -74,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         ref.addValueEventListener(userListener);
+
+        if(shark_hat_unlocked)
+            b_launch.setBackgroundResource(R.drawable.shark_hat_sprite);
 
         b_launch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +103,10 @@ public class MainActivity extends AppCompatActivity {
             trash_img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ref.setValue(new UserData(current_points+1, current_lives));
+                    if(shark_hat_unlocked)
+                        ref.setValue(new UserData(current_points+1, current_lives, true));
+                    else
+                        ref.setValue(new UserData(current_points+1, current_lives, false));
                     ((ViewManager)v.getParent()).removeView(v);
                 }
             });
@@ -108,5 +116,11 @@ public class MainActivity extends AppCompatActivity {
                     Resources.getSystem().getDisplayMetrics().heightPixels/2) - (trash_img.getHeight()+OFFSET)); //makes trash appear only on bottom half of screen
             main_screen.addView(trash_img);
         }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(shark_hat_unlocked)
+            b_launch.setBackgroundResource(R.drawable.shark_hat_sprite);
     }
 }
