@@ -123,4 +123,10 @@ public class MainActivity extends AppCompatActivity {
         if(shark_hat_unlocked)
             b_launch.setBackgroundResource(R.drawable.shark_hat_sprite);
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(shark_hat_unlocked)
+            b_launch.setBackgroundResource(R.drawable.shark_hat_sprite);
+    }
 }
