@@ -51,6 +51,7 @@ public class Background {
         width = bitmap.getWidth();
         height = bitmap.getHeight();
 
+        //create mirror version of background
         Matrix matrix = new Matrix();
         matrix.setScale(-1, 1);
         bitmapReversed = Bitmap.createBitmap(

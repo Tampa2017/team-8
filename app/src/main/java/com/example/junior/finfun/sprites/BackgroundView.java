@@ -5,6 +5,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -34,6 +37,16 @@ public class BackgroundView extends SurfaceView implements Runnable {
     int screenWidth;
     int screenHeight;
 
+    private PlayerShark playerShark;
+
+    //UP to 20 enemies
+    Enemy[] enemies = new Enemy[20];
+    int numEnemies = 0;
+
+    int score = 0;
+
+    private int lives = 3;
+
     public BackgroundView(Context context, int screenWidth, int screenHeight) {
         super(context);
 
@@ -51,9 +64,24 @@ public class BackgroundView extends SurfaceView implements Runnable {
                 this.context,
                 screenWidth,
                 screenHeight,
-                "day_ocean", 0, 110, 200
+                "game_background", 0, 110, 200
         ));
 
+        prepareLevel();
+
+
+    }
+
+    private void prepareLevel() {
+        Log.d("screenWidth", Integer.toString(screenWidth));
+        Log.d("screenHeight", Integer.toString(screenHeight));
+
+        playerShark = new PlayerShark(context, screenHeight, screenWidth);
+
+
+        for(int i = 0; i < enemies.length; i++) {
+            enemies[i] = new Enemy(context, screenWidth, screenHeight);
+        }
 
     }
 
@@ -89,7 +117,7 @@ public class BackgroundView extends SurfaceView implements Runnable {
         try {
             gameThread.join();
         } catch(InterruptedException e) {
-
+            Log.e("Error", "joining thread");
         }
 
     }
@@ -102,12 +130,17 @@ public class BackgroundView extends SurfaceView implements Runnable {
 
             drawBackground(0);
 
-//            paint.setTextSize(60);
-//            paint.setColor(Color.argb(255, 255, 255, 255));
-//            canvas.drawText("I am a plane", 350, screenHeight / 100 * 5, paint);
-//            paint.setTextSize(220);
-//            canvas.drawText("I'm a train", 50, screenHeight / 100*80, paint);
+            paint.setColor(Color.argb(255, 249,129,0));
+            paint.setTextSize(40);
+            canvas.drawText("Score: " + score + "    " +
+                            "Lives: " + lives, 10, 50, paint);
 
+
+            canvas.drawBitmap(playerShark.getBitmap(), playerShark.getX() - 700, playerShark.getY(), paint);
+
+            for(int i =0; i < enemies.length; i++) {
+                    canvas.drawBitmap(enemies[i].getBitmap(), enemies[i].getX(), enemies[i].getY(), paint);
+            }
 
             ourHolder.unlockCanvasAndPost(canvas);
         }
@@ -115,9 +148,52 @@ public class BackgroundView extends SurfaceView implements Runnable {
 
     private void update() {
 
+        boolean lost = false;
+
+        if(lost) {
+            prepareLevel();
+        }
+
         for(Background bg: backgrounds) {
             bg.update(fps);
         }
+
+        playerShark.update(fps);
+
+
+        // Update the players bullet
+        for(int i = 0; i < enemies.length; i++) {
+                enemies[i].update(fps);
+        }
+
+        // Has the player's bullet hit the top of the screen
+
+        // Has an invaders bullet hit the bottom of the screen
+
+        // Has the player's bullet hit an invader
+        for(int i = 0; i < enemies.length; i++) {
+            int enemyxCenter = (int) enemies[i].getX() + (enemies[i].getBitmap().getWidth() / 2);
+            int enemyyCenter = (int) enemies[i].getY() + (enemies[i].getBitmap().getHeight() / 2);
+            int sharkX = (int)playerShark.getX();
+            int sharkY = (int)playerShark.getY();
+
+            int sharkWidth = playerShark.getBitmap().getWidth();
+            int sharkHeight = playerShark.getBitmap().getHeight();
+
+
+            if(enemyxCenter < sharkX + sharkWidth && enemyxCenter > sharkX)
+                    if(enemyyCenter < sharkY + sharkHeight  && enemyyCenter > sharkY)
+                    {
+                        Log.d("collision", "yes!");
+                    }
+        }
+
+        // Has an alien bullet hit a shelter brick
+
+        // Has a player bullet hit a shelter brick
+
+        // Has an invader bullet hit the player ship
+
 
     }
 
@@ -141,5 +217,21 @@ public class BackgroundView extends SurfaceView implements Runnable {
                 fps = 1000/timeThisFrame;
             }
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch(motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+            //Player has touched the screen
+            case MotionEvent.ACTION_DOWN:
+                playerShark.setMovementState(PlayerShark.TOP);
+                break;
+
+            //Player has removed from screen
+            case MotionEvent.ACTION_UP:
+                playerShark.setMovementState(PlayerShark.DOWN);
+                break;
+        }
+        return true;
     }
 }
