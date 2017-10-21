@@ -1,56 +1,77 @@
 package com.example.junior.finfun.sprites;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-
-/**
- * Created by Junior on 10/20/2017.
- */
+import android.graphics.RectF;
 
 public class Enemy {
-    Bitmap bitmap;
 
-    int width;
-    int height;
+    private float x;
+    private float y;
 
-    float speed;
+    private RectF rect;
 
-    int xClip;
-    int startY;
-    int endY;
+    //Which way is trash flowing
+    public final int LEFT = 0;
 
-    Enemy(Context context,
-          int enemyWidth,
-          int enemyHeight,
-          String bitmapName,
-          int sY,
-          int eY,
-          float s) {
+    //going nowhere
+    int heading = -1;
+    float speed = 350;
 
-        int resID = context.getResources().getIdentifier(
-                bitmapName, "drawable", context.getPackageName());
+    private int width;
+    private int height;
 
-        bitmap = BitmapFactory.decodeResource(context.getResources(), resID);
+    private boolean isActive;
 
-        xClip = 0;
+    public Enemy(int screenX, int screenY) {
+        width = screenX / 20;
+        height = screenX / 20;
+        isActive = false;
 
-        startY = sY * (enemyHeight / 100);
-        endY = eY * (enemyHeight / 100);
-        speed = s;
+        rect = new RectF();
+    }
 
-        bitmap = Bitmap.createScaledBitmap(bitmap, enemyWidth , (endY - startY), true);
-        width = bitmap.getWidth();
-        height = bitmap.getHeight();
+    public RectF getRect() {
+        return rect;
+    }
+
+    public boolean getStatus() {
+        return isActive;
+    }
+
+    public void setInactive() {
+        isActive = false;
+    }
+
+    public float getImpactPointX() {
+        if(heading == LEFT) {
+            return x - width;
+        }
+        else return x;
+    }
+
+    public boolean attack(float startX, float startY, int direction) {
+        if(!isActive) {
+            x = startX;
+            y = startY;
+            heading = direction;
+            isActive = true;
+            return true;
+        }
+
+        //bullet already active
+        return false;
     }
 
     public void update(long fps) {
-        xClip -= speed/fps;
-        //if enemy goes off screen to the left, reset position
-        // so that it enters back from the right
-        if(xClip >= width) {
-            xClip = 0;
+        //Just move from right to left
+
+        if(heading == LEFT) {
+            x = x - speed / fps;
         }
+
+        rect.left = x;
+        rect.right = x + width;
+        rect.top = y;
+        rect.bottom = y + height;
     }
+
 }
