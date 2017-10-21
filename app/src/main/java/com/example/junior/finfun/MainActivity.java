@@ -1,6 +1,7 @@
 package com.example.junior.finfun;
 
 import android.content.res.Resources;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.support.constraint.ConstraintLayout;
@@ -28,42 +29,26 @@ public class MainActivity extends AppCompatActivity {
         bg = (ConstraintLayout) findViewById(R.id.background);
 
         Random rand = new Random();
-        List coords = new ArrayList<Point>();
+        List<Rect> trash_images_hitbox = new ArrayList<Rect>();
         for(int i = 0; i < rand.nextInt(10)+1; ++i)
         {
+            Rect r = new Rect();
             ImageView trash_img = new ImageView(MainActivity.this);
             trash_img.setBackgroundResource(R.mipmap.ic_launcher_round);
             trash_img.setX(rand.nextInt(Resources.getSystem().getDisplayMetrics().widthPixels)-trash_img.getWidth());
             trash_img.setY(rand.nextInt(Resources.getSystem().getDisplayMetrics().heightPixels)-trash_img.getHeight());
-            coords.set(i, new Pair<Float, Float>(trash_img.getX(), trash_img.getY()));
+            trash_img.getHitRect(r);
+            if(!trash_images_hitbox.isEmpty()) {
+                for (int j = 0; j < i; ++j) {
+                    while (Rect.intersects(r, trash_images_hitbox.get(j))) {
+                        trash_img.setX(rand.nextInt(Resources.getSystem().getDisplayMetrics().widthPixels) - trash_img.getWidth());
+                        trash_img.setY(rand.nextInt(Resources.getSystem().getDisplayMetrics().heightPixels) - trash_img.getHeight());
+                        trash_img.getHitRect(r);
+                    }
+                    trash_images_hitbox.add(r);
+                }
+            }
             bg.addView(trash_img);
-        }
-    }
-    private class Point {
-        float x;
-        float y;
-        public Point() {
-            x = 0;
-            y = 0;
-        }
-        public Point(float _x, float _y)
-        {
-            x = _x;
-            y = _y;
-        }
-        public float getFirst() {
-            return x;
-        }
-        public float getSecond() {
-            return y;
-        }
-        public void setFirst(float _x)
-        {
-            x = _x;
-        }
-        public void setSecond(float _y)
-        {
-            y = _y;
         }
     }
 }
