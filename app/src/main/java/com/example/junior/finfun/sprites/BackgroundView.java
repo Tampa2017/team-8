@@ -72,6 +72,10 @@ public class BackgroundView extends SurfaceView implements Runnable {
     }
 
     private void prepareLevel() {
+        Log.d("screenWidth", Integer.toString(screenWidth));
+        Log.d("screenHeight", Integer.toString(screenHeight));
+
+        playerShark = new PlayerShark(context, screenHeight, screenWidth);
 
     }
 
@@ -126,7 +130,7 @@ public class BackgroundView extends SurfaceView implements Runnable {
                             "Lives: " + lives, 10, 50, paint);
 
 
-
+            canvas.drawBitmap(playerShark.getBitmap(), playerShark.getX() - 700, playerShark.getY(), paint);
 
 
             ourHolder.unlockCanvasAndPost(canvas);
@@ -144,6 +148,9 @@ public class BackgroundView extends SurfaceView implements Runnable {
         for(Background bg: backgrounds) {
             bg.update(fps);
         }
+
+        playerShark.update(fps);
+
 
     }
 

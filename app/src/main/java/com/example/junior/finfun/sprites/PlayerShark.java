@@ -89,6 +89,10 @@ class PlayerShark {
         return x;
     }
 
+    public float getY() {
+        return y;
+    }
+
     public float getLength() {
         return length;
     }
