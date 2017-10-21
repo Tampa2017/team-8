@@ -33,8 +33,8 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/junior/finfun/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+            <state relative-caret-position="450">
+              <caret line="45" column="126" selection-start-line="45" selection-start-column="126" selection-end-line="45" selection-end-column="126" />
               <folding>
                 <element signature="e#1189#1385#0" expanded="true" />
                 <element signature="e#1384#1385#0" expanded="true" />
@@ -2303,8 +2303,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/junior/finfun/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+        <state relative-caret-position="450">
+          <caret line="45" column="126" selection-start-line="45" selection-start-column="126" selection-end-line="45" selection-end-column="126" />
           <folding>
             <element signature="e#1189#1385#0" expanded="true" />
             <element signature="e#1384#1385#0" expanded="true" />
