@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             trash_img.setBackgroundResource(R.mipmap.ic_launcher_round);
-            trash_img.setX(rand.nextInt(Resources.getSystem().getDisplayMetrics().widthPixels)-(trash_img.getWidth()+OFFSET));
-            trash_img.setY(rand.nextInt(Resources.getSystem().getDisplayMetrics().heightPixels)-trash_img.getHeight());
+            trash_img.setX(rand.nextInt(Resources.getSystem().getDisplayMetrics().widthPixels)-trash_img.getWidth());
+            trash_img.setY(rand.nextInt(Resources.getSystem().getDisplayMetrics().heightPixels)-(trash_img.getHeight()+OFFSET));
             bg.addView(trash_img);
         }
     }
