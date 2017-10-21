@@ -1,6 +1,7 @@
 package com.example.junior.finfun.sprites;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -10,6 +11,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import com.example.junior.finfun.EndGameActivity;
 
 import java.util.ArrayList;
 
@@ -136,7 +139,7 @@ public class BackgroundView extends SurfaceView implements Runnable {
                             "Lives: " + lives, 10, 50, paint);
 
 
-            canvas.drawBitmap(playerShark.getBitmap(), playerShark.getX() - 700, playerShark.getY(), paint);
+            canvas.drawBitmap(playerShark.getBitmap(), screenWidth - 700, playerShark.getY(),  paint);
 
             for(int i =0; i < enemies.length; i++) {
                     canvas.drawBitmap(enemies[i].getBitmap(), enemies[i].getX(), enemies[i].getY(), paint);
@@ -169,23 +172,31 @@ public class BackgroundView extends SurfaceView implements Runnable {
         // Has the player's bullet hit the top of the screen
 
         // Has an invaders bullet hit the bottom of the screen
-
+        int sharkX = (int) playerShark.getX();
+        int sharkY = (int) playerShark.getY();
+        int sharkXWidth = sharkX + playerShark.getBitmap().getWidth() ;
+        int sharkYWidth = sharkY + playerShark.getBitmap().getHeight();
         // Has the player's bullet hit an invader
         for(int i = 0; i < enemies.length; i++) {
-            int enemyxCenter = (int) enemies[i].getX() + (enemies[i].getBitmap().getWidth() / 2);
-            int enemyyCenter = (int) enemies[i].getY() + (enemies[i].getBitmap().getHeight() / 2);
-            int sharkX = (int)playerShark.getX();
-            int sharkY = (int)playerShark.getY();
+            int left = (int)enemies[i].getX();
+            int top = (int)enemies[i].getY();
 
-            int sharkWidth = playerShark.getBitmap().getWidth();
-            int sharkHeight = playerShark.getBitmap().getHeight();
+            if (left < sharkXWidth && left > sharkX)
+                if (top > sharkY && top < sharkYWidth) {
+                    Log.d("collision", "yes!");
+                    Log.d("sharX", Integer.toString(sharkX));
+                    Log.d("sharkY", Integer.toString(sharkY));
 
+                    Log.d("sharkXwidth",Integer.toString(sharkXWidth));
+                    Log.d("sharkYWidth", Integer.toString(sharkYWidth));
 
-            if(enemyxCenter < sharkX + sharkWidth && enemyxCenter > sharkX)
-                    if(enemyyCenter < sharkY + sharkHeight  && enemyyCenter > sharkY)
-                    {
-                        Log.d("collision", "yes!");
-                    }
+                    Log.d("enemyLeft", Integer.toString(left));
+                    Log.d("enemyTop", Integer.toString(sharkY));
+                }
+        }
+
+        if(sharkY <= 0 || sharkYWidth >= screenHeight) {
+            stop();
         }
 
         // Has an alien bullet hit a shelter brick
@@ -233,5 +244,12 @@ public class BackgroundView extends SurfaceView implements Runnable {
                 break;
         }
         return true;
+    }
+
+    private void stop() {
+        Log.d("end of game", "game ended");
+        Intent intent = new Intent(getContext(), EndGameActivity.class);
+        getContext().startActivity(intent);
+
     }
 }

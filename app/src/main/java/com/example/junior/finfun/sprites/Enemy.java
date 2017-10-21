@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.RectF;
+import android.util.Log;
 
 import com.example.junior.finfun.R;
 
@@ -31,8 +32,8 @@ public class Enemy {
     public Enemy(Context context, int screenX, int screenY) {
 
         Random rand = new Random();
-        width = screenX / 20;
-        height = screenY / 20;
+        width = screenX / 5;
+        height = screenY / 5;
 
         rect = new RectF();
 
@@ -56,6 +57,9 @@ public class Enemy {
 
         width = bitmap.getWidth();
         height = bitmap.getHeight();
+
+        Log.d("enemy", Integer.toString((int)width));
+        Log.d("enemy", Integer.toString((int)height));
 
 
     }
@@ -99,9 +103,9 @@ public class Enemy {
         }
 
         rect.left = x;
-        rect.right = x + width;
+        rect.right = (x + width) / 2;
         rect.top = y;
-        rect.bottom = y + height;
+        rect.bottom = (y + height) / 2;
     }
 
 }

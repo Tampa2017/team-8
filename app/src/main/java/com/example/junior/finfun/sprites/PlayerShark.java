@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.RectF;
+import android.util.Log;
 
 import com.example.junior.finfun.R;
 
@@ -43,23 +44,26 @@ public class PlayerShark {
         //Initialize a blank RectF
         rect = new RectF();
 
-        length = screenX/10;
-        height = screenY/10;
+        length = screenX/6;
+        height = screenY/6;
 
         //Start shark in roughly the screen centre
         x = screenX / 2;
         y = screenY - 20;
 
         //Initialize the bitmap
-        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.shark);
+        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.shark_sprite_rs);
 
-        bitmap = Bitmap.createScaledBitmap(bitmap, (int)length, (int) height, false);
+        bitmap = Bitmap.createScaledBitmap(bitmap, (int)length, (int) height, true);
 
         length = bitmap.getWidth();
         height = bitmap.getHeight();
 
+        Log.d("sharK", Integer.toString((int)length));
+        Log.d("shark", Integer.toString((int)height));
+
         //how fast the shark is in pixels per second
-        sharkSpeed = 500;
+        sharkSpeed = 600;
     }
 
     //This update method will be called from update in MainPlayView
@@ -74,10 +78,11 @@ public class PlayerShark {
         }
 
         //update rect which is used to detect hits.
+
         rect.top = y;
-        rect.bottom = y + height;
+        rect.bottom = (y + height) / 2;
         rect.left = x;
-        rect.right = x + length;
+        rect.right = (x + length) / 2;
     }
 
     public RectF getRect() {
