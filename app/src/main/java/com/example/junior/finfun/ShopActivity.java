@@ -50,8 +50,13 @@ public class ShopActivity extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 UserData data = dataSnapshot.getValue(UserData.class);
-                current_points = data.getPoints();
-                current_lives = data.getLives();
+                if(data != null) {
+                    current_points = data.getPoints();
+                    current_lives = data.getLives();
+                }
+                else {
+                    ref.setValue(new UserData());
+                }
             }
 
             @Override

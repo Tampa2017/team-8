@@ -8,6 +8,7 @@ import android.media.Image;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.ViewManager;
@@ -15,6 +16,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,15 +36,44 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton b_launch;
     private ImageButton shop_launch;
     private ConstraintLayout main_screen;
+    private FirebaseUser user;
+    private DatabaseReference ref;
+    private int current_points;
+    private int current_lives;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        ref = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
+
         b_launch = (ImageButton) findViewById(R.id.start_btn); //button starts game
         shop_launch = (ImageButton) findViewById(R.id.shop_btn);
         main_screen = (ConstraintLayout) findViewById(R.id.main_screen);
+
+        ValueEventListener userListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                UserData data = dataSnapshot.getValue(UserData.class);
+                if(data != null) {
+                    current_points = data.getPoints();
+                    current_lives = data.getLives();
+                }
+                else {
+                    ref.setValue(new UserData());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w("Error: ", "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        };
+        ref.addValueEventListener(userListener);
 
         b_launch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
             trash_img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    ref.setValue(new UserData(current_points+1, current_lives));
                     ((ViewManager)v.getParent()).removeView(v);
                 }
             });
