@@ -15,11 +15,26 @@
             android:src="@drawable/day_ocean"
             android:scaleType = "centerCrop"/>
     </FrameLayout>
-    <ImageButton
-        android:id="@+id/start_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="Launch Button"
-        android:src="@drawable/shark_sprite"
-        android:background="@android:color/transparent"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4"/>
+        <ImageButton
+            android:id="@+id/start_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Launch Button"
+            android:src="@drawable/shark_sprite"
+            android:background="@android:color/transparent"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_marginBottom="250px"
+            android:scaleX="2"
+            android:scaleY="2"/>
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
