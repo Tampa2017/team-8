@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -34,6 +36,16 @@ public class BackgroundView extends SurfaceView implements Runnable {
     int screenWidth;
     int screenHeight;
 
+    private PlayerShark playerShark;
+
+    //UP to 20 enemies
+    Enemy[] enemies = new Enemy[20];
+    int numEnemies = 0;
+
+    int score = 0;
+
+    private int lives = 3;
+
     public BackgroundView(Context context, int screenWidth, int screenHeight) {
         super(context);
 
@@ -51,9 +63,15 @@ public class BackgroundView extends SurfaceView implements Runnable {
                 this.context,
                 screenWidth,
                 screenHeight,
-                "day_ocean", 0, 110, 200
+                "game_background", 0, 110, 200
         ));
 
+        prepareLevel();
+
+
+    }
+
+    private void prepareLevel() {
 
     }
 
@@ -89,7 +107,7 @@ public class BackgroundView extends SurfaceView implements Runnable {
         try {
             gameThread.join();
         } catch(InterruptedException e) {
-
+            Log.e("Error", "joining thread");
         }
 
     }
@@ -102,11 +120,13 @@ public class BackgroundView extends SurfaceView implements Runnable {
 
             drawBackground(0);
 
-//            paint.setTextSize(60);
-//            paint.setColor(Color.argb(255, 255, 255, 255));
-//            canvas.drawText("I am a plane", 350, screenHeight / 100 * 5, paint);
-//            paint.setTextSize(220);
-//            canvas.drawText("I'm a train", 50, screenHeight / 100*80, paint);
+            paint.setColor(Color.argb(255, 249,129,0));
+            paint.setTextSize(40);
+            canvas.drawText("Score: " + score + "    " +
+                            "Lives: " + lives, 10, 50, paint);
+
+
+
 
 
             ourHolder.unlockCanvasAndPost(canvas);
@@ -114,6 +134,12 @@ public class BackgroundView extends SurfaceView implements Runnable {
     }
 
     private void update() {
+
+        boolean lost = false;
+
+        if(lost) {
+            prepareLevel();
+        }
 
         for(Background bg: backgrounds) {
             bg.update(fps);
@@ -141,5 +167,16 @@ public class BackgroundView extends SurfaceView implements Runnable {
                 fps = 1000/timeThisFrame;
             }
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch(motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+            case MotionEvent.ACTION_DOWN:
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+        }
+        return true;
     }
 }
