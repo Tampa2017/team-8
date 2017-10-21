@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
             });
             trash_img.setBackgroundResource(R.drawable.trash_sprite);
             trash_img.setX(rand.nextInt(Resources.getSystem().getDisplayMetrics().widthPixels)-(trash_img.getWidth()+OFFSET));
-            trash_img.setY(rand.nextInt(Resources.getSystem().getDisplayMetrics().heightPixels)-((trash_img.getHeight()+OFFSET))+
-                    Resources.getSystem().getDisplayMetrics().heightPixels/2); //makes trash appear only on bottom half of screen
+            trash_img.setY((rand.nextInt(Resources.getSystem().getDisplayMetrics().heightPixels/2) +
+                    Resources.getSystem().getDisplayMetrics().heightPixels/2) - trash_img.getHeight()); //makes trash appear only on bottom half of screen
             main_screen.addView(trash_img);
         }
     }
